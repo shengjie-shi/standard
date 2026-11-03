@@ -1,0 +1,158 @@
+1. mkdir -p or --parents 
+if the parent folder of the folder that is to establish is not made, then the parent folder will be created together
+
+2. cat 
+used to print the content of the chosen file
+
+3. Error: Permission denied
+use "sudo chmod -R 777 /working direction" to get the permission 
+
+4. Linux create virtual environment for python
+ 4.1. create virtualenv
+ conda create -n env_name python=X.X （3.6.12）（80: 3.6.4）
+ 
+ 4.2. enter the env
+ Linux: source activate env_name
+ Windows: activate env_name
+
+ 4.3. exit the env
+ Linux: source deactivate env_name
+ win: deactivate env_name
+
+ 4.4 del the env
+ conda remove -n env_name --all
+
+ 4.5. check the env
+ conda env list
+ 
+ 4.6. if this env is directly created by copying, then modify .conda/envs/*env_name*/bin/pip, the path in the first line
+
+5. check the status of cuda
+nvidia-smi (no space)
+
+6. if the .sh has to command to generate new files, it is recommended to refresh the folder
+
+7.  Run the code on backstage
+7.1 use command: nohup, i.e. nohup + original command
+7.2 check the progress: open a new session and type: ps -ef|grep python
+7.3 kill the progress: kill -9 pid_num
+
+8. copy folder (or file) on server
+if dir2 does not exist
+cp -r dir1 dir2
+if dir2 already exists
+cp -r dir/.dir2
+
+9. Anaconda with CondaHTTPError: HTTP 000 CONNECTION FAILED for url
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+
+    conda config --set show_channel_urls yes
+
+go to C:\Users\username\.condarc, delete -defaults
+
+following: https://cloud.tencent.com/developer/article/1572996
+
+10. enter AI platform account:
+     su - epointtomcat
+
+11. check the command of yum
+man yum
+
+12. update gcc version temporarily
+https://www.vpser.net/manage/centos-6-upgrade-gcc.html
+check gcc version: gcc -v
+
+yum -y install centos-release-scl
+yum -y install devtoolset-7-gcc devtoolset-7-gcc-c++ devtoolset-7-binutils
+scl enable devtoolset-7 bash
+This is for gcc version 7.3
+
+13. usage of tmux
+ from https://www.ruanyifeng.com/blog/2019/10/tmux.html
+ 13.1 create new session
+        tmux new -s <session name>
+ 13.2 seperate session
+        tmux detach
+ 13.3 list all the sessions
+        tmux ls or tmux list-session
+ 13.4 attach the session
+        tmux attach -t <session-name>
+ 13.5 kill session
+        tmux kill-session -t <session-name>
+ 13.6 switch session
+        tmux switch -t <session-name>
+ 13.7 rename session
+        tmux rename-session -t <old-name> <new-name>
+ 13.8 exit session
+        ctrl+d or enter exit
+
+14. catch the user of the pid
+ll /proc/"pid-num"
+
+15. if GPU is occupied but the PID is not shown with nvidia-smi, try:
+fuser -v /dev/nvidia*
+check the PIDs and kill them
+
+16. set the soft link
+ln -s [source file] [target file]
+!!NOTE: the file path should be ABSOLUTE path!!!!
+check: http://c.biancheng.net/view/740.html
+
+17. create virtualenv with virtualenv
+windows: 
+virtualenv -p [python path] [env_name]
+[env_name]\Scripts\activate.bat
+deactivate
+linux:
+https://blog.csdn.net/hohaizx/article/details/78375238
+
+
+18. copy files(folder) from different node
+scp  -r [username\epoint]@[node\192.168.186.73]:[path_to_folder\home/epoint/ssj/SpellGCN] [path\home/epoint/ssj]
+scp -r ftpuser@192.168.186.13:/opt/data/人工智能资源*...
+
+19. on 74 server
+cmake -- cmake3
+
+20. add env variable in linux
+//1,使用export命令
+export PATH=$PATH:/opt/software/node-v8.9.3-linux-x64/bin/node
+
+//export使用方法为 export PATH=$PATH:路径1:路径2:路径n;$PATH为系统变量,表示之前所有设置的路径，如果不加则之前所有的路径都失效。所以必须加上。
+
+//2,修改配置文件/etc/profile
+vi /etc/profile
+在里面加入:export PATH=$PATH:/opt/software/node-v8.9.3-linux-x64/bin/node
+
+//如果是修改用户主目录下的.bash_profile，则添加的环境变量只对该用户有效，修改/etc/profile对所有用户都生效。也可以修改/etc/rc.local文件和/root/.bashrc文件。
+//修改好配置文件后执行source /etc/profile 或者 source /root/.bashrc使配置文件生效
+
+21. jump to another node
+ssh [username]@[node address]
+ssh epoint@192.168.150.16
+
+22. usage of rar
+1. rar
+rar a test.rar file1 file2　　#压缩
+2. unrar
+unrar e test.rar DestPath　　#解压（会在把当前压缩包内容解压到当前目录内，容易造成解压内容和当前目录原文件混合，不容易区分，不建议使用）
+unrar x test.rar DestPath　　#解压（会在当前解压目录内产生一个以压缩包名字命名的目录，目录内是解压内容，推荐使用）
+
+check: https://www.cnblogs.com/yangzhaon/p/12861627.html
+
+23. check lines of a file
+wc -l *.txt
+check file num of a dictionary
+ls -l|grep "^-"| wc -l
+check: https://www.cnblogs.com/uzipi/p/6100790.html
+
+24. check centos version
+cat /etc/redhat-release
+https://www.php.cn/centos/474541.html
+
+
+
