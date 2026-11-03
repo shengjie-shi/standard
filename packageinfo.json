@@ -1,0 +1,75 @@
+{
+	"packagInfo": {
+		"name": "",
+		"version": "1.0.0",
+		"init": "modelRun.exe_init",
+		"deploy": "modelRun.exe_deploy"
+    },
+	"steps": {
+		"init": [
+			{
+				"parameterName": "whlsource",
+				"parameterType": "string",
+				"defaultValue": "${prop.whlurl}",
+				"desc": "依赖包下载地址"
+			}
+		],
+		"deploy": [
+			{
+				"parameterName": "encode_model_url",
+				"parameterType": "modelchoose",
+				"defaultValue": "",
+				"desc": "文字编码模型地址"
+			},
+			{
+				"parameterName": "llm_url",
+				"parameterType": "String",
+				"defaultValue": "",
+				"desc": "大语言模型接口地址"
+			},
+			{
+				"parameterName": "milvus_url",
+				"parameterType": "String",
+				"defaultValue": "",
+				"desc": "Milvus向量数据库地址，结构为host:port★用户名★密码"
+			},
+			{
+				"parameterName": "milvus_table_name",
+				"parameterType": "String",
+				"defaultValue": "",
+				"desc": "Milvus向量数据库表名称，多个表名用英文逗号分隔"
+			},
+			{
+				"parameterName": "embedding_field_name",
+				"parameterType": "String",
+				"defaultValue": "",
+				"desc": "Milvus向量数据库表中embedding列名称，多个用英文逗号分隔"
+			},
+			{
+				"parameterName": "doc_field_name",
+				"parameterType": "String",
+				"defaultValue": "",
+				"desc": "Milvus向量数据库表中文本列名称，多个用英文逗号分隔"
+			},
+			{
+				"parameterName": "milvus_metric_type",
+				"parameterType": "list",
+				"defaultValue": "IP",
+				"valuechoose": "IP,L2",
+				"desc": "向量相似度算法，IP代表内积算法，L2代表欧式l2距离算法"
+			},
+			{
+				"parameterName": "serviceName",
+				"parameterType": "String",
+				"defaultValue": "llmplugin",
+				"desc": "服务名"
+			},
+			{
+				"parameterName": "port",
+				"parameterType": "Int",
+				"defaultValue": "9018",
+				"desc": "端口号"
+			}
+		]
+	}
+}
